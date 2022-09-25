@@ -28,7 +28,9 @@ const mangasee = async (url) => {
       .then(function ($) {
         //this is html
         const htm = $.html();
-        console.log($.html());
+        let url = options.uri;
+        let name = url.substring(url.lastIndexOf("/") + 1, url.length);
+        name = name.replaceAll("-", " ");
         let begImg = htm.indexOf("img-fluid bottom-5");
         let imgURL = htm.substring(begImg, begImg + 1000);
         imgURL = imgURL.substring(
@@ -53,8 +55,7 @@ const mangasee = async (url) => {
           date: chapters[0].Date.substring(0, 10),
           url: imgURL,
         };
-        console.log(details);
-        console.log(`This is in the function ${details}`);
+
         return details;
       })
       .catch(function (err) {
@@ -68,14 +69,12 @@ app.post("/", async (req, res) => {
   let mangaList = Object.values(req.body);
   let updatedList = [];
   var manga = new Object();
-  //console.log(mangaList.length);
   for (let i = 0; i < mangaList.length; i++) {
     if (mangaList[i].includes("mangasee123")) {
       manga = await mangasee(mangaList[i]);
-      console.log(manga);
     }
     updatedList.push(manga);
-    //console.log(updatedList);
+    console.log(updatedList);
   }
   res.send(updatedList);
 });
