@@ -2,7 +2,7 @@
 const rp = require("request-promise");
 
 let object = {
-  1: "https://mangasee123.com/manga/The-Outcast",
+  1: "https://mangase123.com/manga/The-Outcast",
   2: "https://mangasee123.com/manga/Kanojo-Wa-Sore-Wo-Gaman-Dekinai",
   3: "https://mangasee123.com/manga/Shikabane-Gatana",
 };
